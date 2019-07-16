@@ -6,31 +6,46 @@
 //    specs: ['./tests/1spec.js']
 //};
 
-//var HTMLReporter = require('protractor-jasmin2-html-reporter');
-//var reporter = new HTMLReporter({
-//    savePath: 'C:/Users/Mitchell Christensen/Desktop/Protractor', //baseDirectory: 'D: /Protractor/screenshot',
-//    fileName: 'Home_Page',
-//    takeScreenshotsOnlyOnFailures: true,
-//    userCss: 'my-report-styles.css',
-//});
-//HTMLReport called once tests are finished
 exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['./tests/2spec.js'],
-    jasminNodeOpts: {
-        showColors: true,
+    suites: {
+        homepage: './tests/1spec.js',
+        loginpage: './tests/2spec.js',
+        experiement: './tests/Experiement.js'
     },
-    //onPrepare: function () {
-    //    jasmin.getEnv().addReporter(reporter);
-    //    //multiCapabilities: [{
-    //    //    'browserName': 'firefox'
-    //    //}, {
-    //    //    'browserName': 'chrome'
-    //    chromeOptions: {
-    //        args: [
-    //            '--start-maximized'
-    //        ]
-    //    }
-    //},
-    };
+    multipleCapabilities: [{
+        browserName: 'firefox'
+    }, {
+        browserName: 'chrome'
+        }],
+    onPrepare: function () {
+        chromeOptions: {
+            args: ['--start-maximized']
+        }
+    },
+    onPrepare: function () {
+        var folderName = (new Date()).toString().split(' ').splice(1, 4).join(' ');
+        var mkdirp = require('mkdirp');
+        var newfolder = "./reports/" + folderName;
+        require('jasmine-reporters');
+
+        mkdirp(newFolder, function (err) {
+            if (err) {
+                console.error(err);
+            } else {
+                jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter(newFolder, true, true));
+            }
+        }
+    },
+    params: {
+        login: {
+            user: 'MitchellC',
+            password: 'Timp1234'
+        }
+    },
+    jasmineNodeOpts: {
+        showColors: true,
+        defaultTimoutInterval: 30000
+    }
+};

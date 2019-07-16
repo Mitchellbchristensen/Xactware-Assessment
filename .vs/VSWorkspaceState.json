@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Tests"
   ],
-  "SelectedNode": "\\2spec.js",
+  "SelectedNode": "\\Tests\\1spec.js",
   "PreviewInSolutionExplorer": false
 }
