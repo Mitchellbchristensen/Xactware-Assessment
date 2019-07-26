@@ -1,18 +1,19 @@
  //experiment.js
-describe('UofU Loginpage', function () {
-
+describe('Experiment with different tests', function () {
     beforeEach(function () {
-        browser.get('https://healthcare.utah.edu/');
+        browser.get('');
     });
 
     it('Fail login', function () {
-        element(by.buttonText('Log In to MyChart')).click();
-        browser.sleep(5000);
+        log.sendKeys(browser.params.login.user); //referencing a variable and a paramater/user (This wasn't nessesary but I wanted to show I could do it)
+        pass.sendKeys(browser.params.login.password);
+        Lb.click();
         browser.getAllWindowHandles().then(function (handles) {
-            browser.switchTo().window(handles[1]);
-            browser.sleep(5000);
-            expect(browser.getTitle()).toEqual('MyChart - Login Page');
-        })
-
+            newWindowHandle = handles[1];
+            browser.switchTo().window(newWindowHandle).then(function () {
+                expect(browser.driver.getTitle()).toEqual('MyChart - Login Page')
+                expect(browser.driver.findElement(by.id('loginErrorMessage')).isDisplayed())
+            })
+        });
     })
 });

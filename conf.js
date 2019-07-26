@@ -12,9 +12,10 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     suites: {
         homepage: './tests/1spec.js',
-        loginpage: './tests/2spec.js',
+        fad: './tests/2spec.js',
         experiment: './tests/experiment.js'
     },
+    baseUrl: 'https://healthcare.utah.edu/',
     //multiCapabilities: [{
     //    browserName: 'chrome',
     //    sharedTestFiles: true,
@@ -24,12 +25,12 @@ exports.config = {
     //            '--start-maximized']
     //    }
     //}, {
-    //    browserName: 'firefox',
-    //    'moz:firefoxOptions': {
-    //        args: [
-    //            '--safe-mode']
-    //        }
-    //    }],
+        //browserName: 'firefox',
+        //'moz:firefoxOptions': {
+        //    args: [
+        //        '--safe-mode']
+        //    }
+        //}],
     maxSessions: 1,
     onPrepare: function () {
         // Adds a screenshot reporter html link to /tmp/screenshots`:
@@ -44,6 +45,14 @@ exports.config = {
             baseDirectory: 'tmp/screenshots'
             , jsonsSubfolder: 'jsons'
         });
+        global.isAngularSite = function (flag) {
+            browser.ignoreSynchronization = !flag;
+            return browser.driver.wait(function () {
+                return browser.driver.getCurrentUrl(function (url) {
+                    return /activity/.test(url);
+                });
+            });
+        }
     },
     params: {
         login: {
@@ -53,6 +62,6 @@ exports.config = {
     },
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimoutInterval: 30000
+        defaultTimoutInterval: 10000
     },
 };
