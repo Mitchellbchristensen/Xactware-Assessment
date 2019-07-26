@@ -1,29 +1,18 @@
-//Experiment.js
-describe('Protractor Demo App', function () {
-    var firstNumber = element(by.model('first'));
-    var secondNumber = element(by.model('second'));
-    var goButton = element(by.id('gobutton'));
-    var latestResult = element(by.binding('latest'));
-    var history = element.all(by.repeater('result in memory'));
-
-    function add(a, b) {
-        firstNumber.sendKeys(a);
-        secondNumber.sendKeys(b);
-        goButton.click();
-    }
+ //experiment.js
+describe('UofU Loginpage', function () {
 
     beforeEach(function () {
-        browser.get('http://juliemr.github.io/protractor-demo/');
+        browser.get('https://healthcare.utah.edu/');
     });
 
-    it('should have a history', function () {
-        add(1, 2);
-        add(3, 4);
+    it('Fail login', function () {
+        element(by.buttonText('Log In to MyChart')).click();
+        browser.sleep(5000);
+        browser.getAllWindowHandles().then(function (handles) {
+            browser.switchTo().window(handles[1]);
+            browser.sleep(5000);
+            expect(browser.getTitle()).toEqual('MyChart - Login Page');
+        })
 
-        expect(history.count()).toEqual(2);
-
-        add(5, 6);
-
-        expect(history.count()).toEqual(0); // This is wrong!
-    });
+    })
 });

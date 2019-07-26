@@ -5,7 +5,7 @@ describe('UofU Homepage', function () {
     var Lb = element(by.css('Log In to MyChart'));
 
     beforeEach(function () {
-        browser.get('https://healthcare.utah.edu/');
+        browser.get('https://mychart.med.utah.edu');
     });
 
     it('Fail login', async function () {
@@ -91,3 +91,14 @@ describe('UofU Homepage', function () {
     //    element(by.binding('Log In to MyChart')).click();
     //    expect(by.binding('Login unsuccessful'))
     //});
+
+            //var guru = element(by.xpath('/section/div/div/div[1]/div[1]/div/div[2]/form/button'));
+            //element(guru.getText()).click();
+        //setTimeout(function () { alert("Hello"); }, 30000);
+        //browser.sleep(5000);
+        //browser.getallwindowhandles().then(function (handles) {
+        //    newwindowhandle = handles[1]; // this is your new window
+            //browser.switchto().window(newwindowhandle).then(function () {
+                //expect(browser.getcurrenturl()).tomatch('https://mychart.med.utah.edu/mychart/default.asp');
+            //});
+        //})
