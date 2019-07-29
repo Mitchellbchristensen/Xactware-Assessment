@@ -10,16 +10,18 @@ describe('Find a Doctor page', function () {
         expect(element.all(by.repeater("doc in docs | filter: {fullName: query} | orderBy:'lastName'")).count()).toEqual(2);
     });
 
-    //it('Search for a doctor', function () {
-     //   var iWantToSee = element.all(by.id('fad-dropdown'))
-      //      .then(function (options) {
-       //         options[1].click();
-                //element(by.id('fad-dropdown')).sendKeys('specialist');
-                //element(by.id('specialistSpecialties_value')).sendKeys('Occupational Therapy');
-                //element(by.model('location')).sendKeys('');
-                //element(by.model('gender.female')).sendKeys('');
-                //element(by.model('language')).sendKeys('');
-                //expect(element.all(by.repeater("doc in docs | filter: {fullName: query} | orderBy:'lastName'")).count()).toEqual(2);
-            //});
-    //}
+    it('Search for a doctor', function () {
+        element(by.id('fad-dropdown'))
+            .all(by.tagName('option'))
+            .get(1)
+            .click();
+        element(by.model('primaryCare'))
+            .all(by.tagName('option'))
+            .get(4)
+            .click();
+        element(by.model('location')).sendKeys('University H');
+        element(by.model('gender.female')).click();
+        element(by.model('language')).sendKeys('Spanish').click();
+        expect(element.all(by.repeater(list)).count()).toEqual(1);
+    });
 });

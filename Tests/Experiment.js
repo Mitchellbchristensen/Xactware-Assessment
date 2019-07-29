@@ -9,25 +9,27 @@ describe('Experiment with different tests', function () {
     it('Search for a doctor', function () {
         element(by.id('fad-dropdown'))
             .all(by.tagName('option'))
-            .get(1)
+            .get(2)
             .click();
-        element(by.model('primaryCare'))
-            .all(by.tagName('option'))
-            .get(3)
-            .click();
-        element(by.model('location')).sendKeys('University H');
-        element(by.model('gender.female')).click();
-        element(by.model('language')).sendKeys('Spanish').click();
+        element(by.model('specialistSpecialties_value')).sendkeys('Family Medicine')
+            //arrow down key
+            //enter key
+        element(by.model('location')).sendKeys('Farmington Health Center');
+        element(by.model('gender.male')).click();
+        element(by.model('language')).sendKeys('Afrikaans').click();
             expect(element.all(by.repeater(list)).count()).toEqual(1);
     });
-});
 
-//<select id="locregion" class="create_select ng-pristine ng-invalid ng-invalid-required" required="" ng-disabled="organization.id !== undefined" ng-options="o.id as o.name for o in organizations" ng-model="organization.parent_id">
-//    <option value="?" selected="selected"></option>
-//    <option value="0">Ranjans Mobile Testing</option>
-//    <option value="1">BeaverBox Testing</option>
-//    <option value="2">BadgerBox</option>
-//    <option value="3">CritterCase</option>
-//    <option value="4">BoxLox</option>
-//    <option value="5">BooBoBum</option>
-//</select>
+    it('Search for a doctor', function () { //This reveals a bug in the code
+        element(by.id('fad-dropdown'))
+            .all(by.tagName('option'))
+            .get(1)
+            .click();
+        element(by.id('fad-dropdown'))
+            .all(by.tagName('option'))
+            .get(1)
+            .click();
+        element(by.model('specialistSpecialties_value')).sendkeys('Family Medicine')
+        expect(element.all(by.repeater(list)).count()).toEqual(1);
+    });
+});
