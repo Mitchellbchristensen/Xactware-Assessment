@@ -14,9 +14,11 @@ describe('UofU Homepage', function () {
 
     it('Login button redirects to MyChart', function () {
         element(by.buttonText('Log In to MyChart')).click();
+        //The browser had a hard time waiting for the new tab (This is better than a browser.sleep)
         browser.getAllWindowHandles().then(function (handles) {
             newWindowHandle = handles[1];
             browser.switchTo().window(newWindowHandle).then(function () {
+                //I found out that the mychart site is't angular so I have to use browser.driver
                 expect(browser.driver.getTitle()).toEqual('MyChart - Login Page')
             })
         });
@@ -29,7 +31,6 @@ describe('UofU Homepage', function () {
         browser.getAllWindowHandles().then(function (handles) {
             newWindowHandle = handles[1];
             browser.switchTo().window(newWindowHandle).then(function () {
-                expect(browser.driver.getTitle()).toEqual('MyChart - Login Page')
                 expect(browser.driver.findElement(by.id('loginErrorMessage')).isDisplayed())
             })
         });
