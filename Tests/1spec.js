@@ -48,12 +48,6 @@ describe('UofU Health homepage', function () {
         });
     })
 
-    //browser.getAllWindowHandles().then((handles) => {
-    //    browser.driver.switchTo().window(handles[1]);
-    //    browser.driver.close();
-    //    browser.driver.switchTo().window(handles[0]);
-    //});
-
     // 'Test each header link'
     // Find the list of header elements (It is an odd list of classes)
     // Click on the first link (Then do this for each consecutive link)
