@@ -7,6 +7,17 @@ describe('Find a Doctor page', function () {
     beforeEach(function () {
         browser.get('https://healthcare.utah.edu/fad/');
     });
+    afterEach(function () {
+        browser.getAllWindowHandles().then(function (handles) {
+            for (let i = 1; i < handles.length; i++) {
+                if (handles[i]) {
+                    browser.driver.switchTo().window(handles[i]);
+                    browser.driver.close();
+                }
+            }
+            browser.driver.switchTo().window(handles[0]);
+        });
+    });
 
     it('Search for a doctor by name', function () {
         element(by.model('query')).sendKeys('Burke');

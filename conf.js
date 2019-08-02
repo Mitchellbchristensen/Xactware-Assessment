@@ -16,21 +16,21 @@ exports.config = {
         experiment: './tests/experiment.js'
     },
     baseUrl: 'https://healthcare.utah.edu/',
-    //multiCapabilities: [{
-    //    browserName: 'chrome',
-    //    sharedTestFiles: true,
-    //    maxInstances: 1,
-    //    chromeOptions: {
-    //        args: [
-    //            '--start-maximized']
-    //    }
-    //}, {
-        //browserName: 'firefox',
-        //'moz:firefoxOptions': {
-        //    args: [
-        //        '--safe-mode']
-        //    }
-        //}],
+    multiCapabilities: [{
+        browserName: 'chrome',
+        sharedTestFiles: true,
+        maxInstances: 1,
+        chromeOptions: {
+            args: [
+                '--start-maximized']
+        }
+    }, {
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: [
+                '--safe-mode']
+            }
+        }],
     maxSessions: 1,
     onPrepare: function () {
         // Adds a screenshot reporter html link to /tmp/screenshots`:

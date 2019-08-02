@@ -3,9 +3,21 @@ describe('UofU Health homepage', function () {
     var username = element(by.id('Login'));
     var password = element(by.id('password'));
     var login = element(by.buttonText('Log In to MyChart'));
+    var tabs = browser.WindowHandles;
 
     beforeEach(function () {
         browser.get('');
+    });
+    afterEach(function () {
+            browser.getAllWindowHandles().then(function (handles) {
+                for (let i = 1; i < handles.length; i++) {
+                    if (handles[i]) {
+                        browser.driver.switchTo().window(handles[i]);
+                        browser.driver.close();
+                    }
+                }
+                browser.driver.switchTo().window(handles[0]);
+            });
     });
 
     it('Main site has a title (Should succeed)', function () {
@@ -35,6 +47,12 @@ describe('UofU Health homepage', function () {
             })
         });
     })
+
+    //browser.getAllWindowHandles().then((handles) => {
+    //    browser.driver.switchTo().window(handles[1]);
+    //    browser.driver.close();
+    //    browser.driver.switchTo().window(handles[0]);
+    //});
 
     // 'Test each header link'
     // Find the list of header elements (It is an odd list of classes)
