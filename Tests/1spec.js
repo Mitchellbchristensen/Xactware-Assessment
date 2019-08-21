@@ -3,7 +3,8 @@ describe('UofU Health homepage', function () {
     var username = element(by.id('Login'));
     var password = element(by.id('password'));
     var login = element(by.buttonText('Log In to MyChart'));
-    var tabs = browser.WindowHandles;
+    var searchIcon = element(by.className('a-icon  a-icon--small  u-space-right--small'));
+    var searchField = element(by.id('mainSearchModal'));
 
     beforeEach(function () {
         browser.get('');
@@ -47,6 +48,17 @@ describe('UofU Health homepage', function () {
             })
         });
     })
+    it('Search for keyword (clicking enter) and verify search page is pulled up', function () {
+        searchIcon.click();
+        searchField.sendKeys('mychart').sendKeys(protractor.Key.ENTER);
+        expect(browser.getTitle()).toEqual('Search | University of Utah Health')
+    });
+    it('Search for keyword (clicking fields search icon) and verify search page is pulled up', function () {
+        searchIcon.click();
+        searchField.sendKeys('mychart');
+        element(by.css('[ng-click="submitSearchFormModal(modalText)"]')).click();
+        expect(browser.getTitle()).toEqual('Search | University of Utah Health')
+    });
 
     // 'Test each header link'
     // Find the list of header elements (It is an odd list of classes)

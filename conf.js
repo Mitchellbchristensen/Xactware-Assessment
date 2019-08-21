@@ -24,36 +24,36 @@ exports.config = {
             args: [
                 '--start-maximized']
         }
-    }, {
-        browserName: 'firefox',
-        'moz:firefoxOptions': {
-            args: [
-                '--safe-mode']
-            }
+    //}, {
+    //    browserName: 'firefox',
+    //    'moz:firefoxOptions': {
+    //        args: [
+    //            '--safe-mode']
+    //        }
         }],
-    maxSessions: 1,
-    onPrepare: function () {
-        // Adds a screenshot reporter html link to /tmp/screenshots`:
-        jasmine.getEnv().addReporter(new HtmlReporter({
-            baseDirectory: 'tmp/screenshots'
-        }).getJasmine2Reporter());
-        new HtmlReporter({
-            baseDirectory: 'tmp/screenshots'
-            , screenshotsSubfolder: 'images'
-        });
-        new HtmlReporter({
-            baseDirectory: 'tmp/screenshots'
-            , jsonsSubfolder: 'jsons'
-        });
-        global.isAngularSite = function (flag) {
-            browser.ignoreSynchronization = !flag;
-            return browser.driver.wait(function () {
-                return browser.driver.getCurrentUrl(function (url) {
-                    return /activity/.test(url);
-                });
-            });
-        }
-    },
+    //maxSessions: 1,
+    //onPrepare: function () {
+    //    // Adds a screenshot reporter html link to /tmp/screenshots`:
+    //    jasmine.getEnv().addReporter(new HtmlReporter({
+    //        baseDirectory: 'tmp/screenshots'
+    //    }).getJasmine2Reporter());
+    //    new HtmlReporter({
+    //        baseDirectory: 'tmp/screenshots'
+    //        , screenshotsSubfolder: 'images'
+    //    });
+    //    new HtmlReporter({
+    //        baseDirectory: 'tmp/screenshots'
+    //        , jsonsSubfolder: 'jsons'
+    //    });
+    //    global.isAngularSite = function (flag) {
+    //        browser.ignoreSynchronization = !flag;
+    //        return browser.driver.wait(function () {
+    //            return browser.driver.getCurrentUrl(function (url) {
+    //                return /activity/.test(url);
+    //            });
+    //        });
+    //    }
+    //},
     params: {
         login: {
             user: 'MitchellC',
