@@ -6,7 +6,7 @@ describe('Experiment with different tests', function () {
     var searchField = element(by.id('mainSearchModal'));
 
     beforeEach(function () {
-        browser.get('');
+        browser.get('https://www.xactware.com/en-us/');
     });
     afterEach(function () {
         browser.getAllWindowHandles().then(function (handles) {
@@ -20,13 +20,16 @@ describe('Experiment with different tests', function () {
         });
     });
 
-    it('Search for keyword and click on predictive results', function () {
-        searchIcon.click();
-        searchField.sendKeys('mychart');
-        element.all(by.repeater('g in general')).
-            get(2).
-            element(by.linkText('mychart-video-visit-updated.pdf')).
-            click();
-        expect(browser.driver.getCurrentUrl()).toEqual('https://healthcare.utah.edu/telehealth/docs/mychart-video-visit-updated.pdf');
-    });
+    //it('Search for keyword', function () {
+    //    element(by.id('q')).sendKeys('xactimate').sendKeys(protractor.Key.ENTER);
+    //    expect(browser.getTitle()).toEqual('Resources - Xactware Search | Xactware');
+    //});
+    //it('Click on header products-Xactimate', function () {
+    //    browser.waitForAngular();
+    //    browser.actions().mouseMove(
+    //        element(by.id('menu'))
+    //            .element(by.css('a[href*="/en-us/products/"]'))).perform();
+    //    element(by.css('a[href*="/en-us/solutions/claims-estimating/xactimate/professional/"]')).click();
+    //    expect(browser.driver.getCurrentUrl()).toEqual('https://www.xactware.com/en-us/solutions/claims-estimating/xactimate/professional/');
+    //});
 })

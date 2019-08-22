@@ -59,6 +59,15 @@ describe('UofU Health homepage', function () {
         element(by.css('[ng-click="submitSearchFormModal(modalText)"]')).click();
         expect(browser.getTitle()).toEqual('Search | University of Utah Health')
     });
+    //NOT COMPLETED YET    it('Search for keyword and click on predictive results', function () {
+    //    searchIcon.click();
+    //    searchField.sendKeys('mychart');
+    //    element.all(by.repeater('g in general')).
+    //        get(2).
+    //        element(by.linkText('mychart-video-visit-updated.pdf')).
+    //        click();
+    //    expect(browser.driver.getCurrentUrl()).toEqual('https://healthcare.utah.edu/telehealth/docs/mychart-video-visit-updated.pdf');
+    //});
 
     // 'Test each header link'
     // Find the list of header elements (It is an odd list of classes)
